@@ -16,4 +16,4 @@ WORKDIR /app
 
 COPY --from=builder /app .
 
-CMD ["node", "index.js"];
+CMD ["node", "index.js"]
