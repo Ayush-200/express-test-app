@@ -1,6 +1,9 @@
 pipeline{
   agent any
 
+    environment {
+    KUBECONFIG = "/var/lib/jenkins/.kube/config"
+  }
   stages{
     stage("github repo clone"){
       steps{
