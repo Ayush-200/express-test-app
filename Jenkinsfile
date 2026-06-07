@@ -1,9 +1,6 @@
 pipeline{
   agent any
 
-    environment {
-    KUBECONFIG = "/var/lib/jenkins/.kube/config"
-  }
   stages{
     stage("github repo clone"){
       steps{
@@ -44,10 +41,10 @@ pipeline{
 
     stage("kubernetes deployment"){
         steps{
-            sh "kubectl apply -f deployment.yml"
-            sh "kubectl get pods"
-            sh "kubectl apply -f service.yml"
-            sh "kubectl get svc"
+            sh "sudo -u ubuntu kubectl apply -f deployment.yml"
+            sh "sudo -u ubuntu kubectl get pods"
+            sh "sudo -u ubuntu kubectl apply -f service.yml"
+            sh "sudo -u ubuntu kubectl get svc"
         }
     }
   }
