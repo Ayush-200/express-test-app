@@ -38,6 +38,15 @@ pipeline{
         sh 'docker run -d -p 3000:3000 ayushbhatia123/express-app:latest'
       }
     }
+
+    stage("kubernetes deployment"){
+        steps{
+            sh "kubectl apply -f deployment.yml"
+            sh "kubectl get pods"
+            sh "kubectl apply -f service.yml"
+            sh "kubectl get svc"
+        }
+    }
   }
   
 }
