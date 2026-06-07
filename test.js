@@ -16,4 +16,4 @@ function test() {
 }
 
 test();
-console.log(name);
+console.log(name); 
