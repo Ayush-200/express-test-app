@@ -33,11 +33,19 @@ pipeline{
     }
 
     stage("docker image run"){
-      steps{
-        sh 'docker pull ayushbhatia123/express-app:latest'
-        sh 'docker run -d -p 3000:3000 ayushbhatia123/express-app:latest'
-      }
-    }
+  steps{
+    sh '''
+      docker pull ayushbhatia123/express-app:latest
+
+      # stop old container if exists
+      docker stop express-app || true
+      docker rm express-app || true
+
+      # run new container with fixed name
+      docker run -d --name express-app -p 3000:3000 ayushbhatia123/express-app:latest
+    '''
+  }
+}
 
     stage("kubernetes deployment"){
         steps{
